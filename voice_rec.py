@@ -54,16 +54,11 @@ def run_alexa():
     elif 'joke' in command:
         talk(pyjokes.get_joke())
         print(pyjokes.get_joke())
-    elif ' open youtube ' in command:
+    elif ' openyoutube ' in command:
             webbrowser.open('youtube.com')
         
-    elif 'open google' in command:
+    elif 'opengoogle' in command:
             webbrowser.open('google.com')
-    elif 'play music' in command:
-            music_dir='C:\\Users\\ajayp\\Music'
-            songs=os.listdir(music_dir)
-            print(songs)
-            os.startfile(os.path.join(music_dir, songs[0]))
     elif 'open vs code' in command:
             code_dir="C:\\Users\\amish\\OneDrive\\Desktop\\Visual Studio Code.lnk"
             os.startfile(code_dir)
