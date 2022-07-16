@@ -7,12 +7,10 @@ import pyjokes
 import webbrowser
 import os
 
-
 listener=sr.Recognizer()
 engine=pyttsx3.init()
 voices=engine.getProperty('voices')
 engine.setProperty('voice',voices[1].id)
-engine.say('Hey i am alexa. How can I help You')
 engine.runAndWait()
 
 def talk(text):
@@ -36,11 +34,9 @@ def run_alexa():
     command=take_command()
     print(command)
     if 'play' in command:
-        music = "C:\\Users\\amish\\Music"
-        song=os.listdir(music)
-        print(song)
-        talk('playing music')
-        os.startfile(os.path.join(music,song[0]))
+        song=command.replace('play','...')
+        talk('pllaying'+song)
+        pywhatkit.playonyt(song)
     elif 'time' in command:
         time=datetime.datetime.now().strftime('%I:%M %p')
         talk('time is '+time)
@@ -54,11 +50,16 @@ def run_alexa():
     elif 'joke' in command:
         talk(pyjokes.get_joke())
         print(pyjokes.get_joke())
-    elif ' openyoutube ' in command:
+    elif 'open youtube' in command:
             webbrowser.open('youtube.com')
         
-    elif 'opengoogle' in command:
+    elif 'open google' in command:
             webbrowser.open('google.com')
+    elif 'play music' in command:
+            music_dir="C:\\Users\\amish\\Music"
+            songs=os.listdir(music_dir)
+            print(songs)
+            os.startfile(os.path.join(music_dir, songs[0]))
     elif 'open vs code' in command:
             code_dir="C:\\Users\\amish\\OneDrive\\Desktop\\Visual Studio Code.lnk"
             os.startfile(code_dir)
@@ -69,7 +70,7 @@ def run_alexa():
        
     else:
         talk("please say the command again")
+
         
 while True:
     run_alexa()
-            
